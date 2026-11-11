@@ -1,6 +1,8 @@
 # 呆森 DaiSen 官網 — 給接手的人與 AI 工具
 
-正式網址：https://trennyho.github.io/daisen-landing/
+正式網址：https://daisen.sen-huo.com/（2026-11-09 起，GoDaddy CNAME `daisen` → `trennyho.github.io`，GitHub Pages 設定填自訂網域）
+舊網址 https://trennyho.github.io/daisen-landing/ 仍會自動轉到新網址（含 `?tab=filters` 這類參數）。包裹卡片、圖文選單、bot 都還印著舊網址，
+所以 **repo 不能改名、不能搬到別的帳號或組織**，一搬舊網址就斷。
 負責人：praperpro（GitHub `praperpro-nonbiri`），上線由 Ethan 決定。
 
 **這是正在營業的店，不是 demo。** 真客人每天從包裹卡片、LINE 選單、bot 連進來。
