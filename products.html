@@ -225,6 +225,12 @@ nav.topnav {
   filter: brightness(0.9) saturate(0.9);
 }
 .card:hover .card-img { transform: scale(1.04); filter: brightness(1) saturate(1); }
+/* 借用同系列圖時，圖下方加註：以文字標示的機型為準 */
+.card-img-note {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6); color: rgba(255,255,255,0.85);
+  font-size: 10px; line-height: 1.4; padding: 5px 10px; text-align: center;
+}
 .card-tag {
   position: absolute; top: 10px; left: 10px;
   background: rgba(0,180,216,0.85); backdrop-filter: blur(4px);
@@ -410,10 +416,10 @@ src="https://www.facebook.com/tr?id=1838821526583145&ev=PageView&noscript=1"
   <!-- sticky tab bar -->
   <div class="tab-sticky" id="tabSticky">
     <button class="tab-btn active" onclick="switchTab('accessories',this)">
-      吸頭配件 <span class="tab-count">14</span>
+      吸頭配件 <span class="tab-count">24</span>
     </button>
     <button class="tab-btn" onclick="switchTab('filters',this)">
-      濾芯耗材 <span class="tab-count">8</span>
+      濾芯耗材 <span class="tab-count">10</span>
     </button>
   </div>
 
@@ -608,6 +614,137 @@ src="https://www.facebook.com/tr?id=1838821526583145&ev=PageView&noscript=1"
         </div>
       </div>
 
+      <div class="card reveal reveal-delay-1">
+        <div class="card-img-wrap">
+          <img class="card-img" src="dyson配件/LINE_ALBUM_長縫隙直吸頭_261119.jpg" alt="長縫隙直吸頭 245mm" loading="lazy">
+          <div class="card-tag">副廠適用</div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">長縫隙直吸頭 245mm</div>
+          <div class="card-models">V7 / V8 / V10 / V11 / V12 / V15 / Digital Slim</div>
+          <div class="card-price"><small>$</small>79</div>
+          <button class="card-btn" onclick="lineAsk('長縫隙直吸頭 245mm $79')">LINE 詢問購買</button>
+        </div>
+      </div>
+
+      <div class="card reveal reveal-delay-2">
+        <div class="card-img-wrap">
+          <img class="card-img" src="dyson配件/LINE_ALBUM_綠光定位顯塵燈_261119.jpg" alt="綠光定位顯塵燈" loading="lazy">
+          <div class="card-tag">副廠適用</div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">綠光定位顯塵燈</div>
+          <div class="card-models">V6 / V7 / V8 / V10 / V11 / V12 / V15 / Digital Slim / G5 / V16（通用）</div>
+          <div class="card-price"><small>$</small>179</div>
+          <button class="card-btn" onclick="lineAsk('綠光定位顯塵燈 $179')">LINE 詢問購買</button>
+        </div>
+      </div>
+
+      <div class="card reveal reveal-delay-3">
+        <div class="card-img-wrap">
+          <img class="card-img" src="dyson配件/LINE_ALBUM_延長杆V7-V15_261119.jpg" alt="延長杆 V7–V15 款" loading="lazy">
+          <div class="card-tag">副廠適用</div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">延長杆 V7–V15 款</div>
+          <div class="card-models">V7 / V8 / V10 / V11 / V15</div>
+          <div class="card-price"><small>$</small>199</div>
+          <button class="card-btn" onclick="lineAsk('延長杆 V7–V15 款 $199')">LINE 詢問購買</button>
+        </div>
+      </div>
+
+      <div class="card reveal reveal-delay-1">
+        <div class="card-img-wrap">
+          <img class="card-img" src="dyson配件/LINE_ALBUM_延長杆Slim-V12_261119.jpg" alt="延長杆 Digital Slim／V12 款" loading="lazy">
+          <div class="card-tag">副廠適用</div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">延長杆 Digital Slim／V12 款</div>
+          <div class="card-models">V12 / Digital Slim</div>
+          <div class="card-price"><small>$</small>389</div>
+          <button class="card-btn" onclick="lineAsk('延長杆 Digital Slim／V12 款 $389')">LINE 詢問購買</button>
+        </div>
+      </div>
+
+      <div class="card reveal reveal-delay-2">
+        <div class="card-img-wrap">
+          <img class="card-img" src="dyson配件/LINE_ALBUM_綠光顯塵吸頭V7-V15_261119.jpg" alt="綠光顯塵吸頭 V7–V15 款" loading="lazy">
+          <div class="card-tag">副廠適用</div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">綠光顯塵吸頭 V7–V15 款</div>
+          <div class="card-models">V7 / V8 / V10 / V11 / V15 / G5</div>
+          <div class="card-price"><small>$</small>799</div>
+          <button class="card-btn" onclick="lineAsk('綠光顯塵吸頭 V7–V15 款 $799')">LINE 詢問購買</button>
+        </div>
+      </div>
+
+      <div class="card reveal reveal-delay-3">
+        <div class="card-img-wrap">
+          <img class="card-img" src="dyson配件/LINE_ALBUM_綠光顯塵吸頭Slim-V12_261119.jpg" alt="綠光顯塵吸頭 Digital Slim／V12 款" loading="lazy">
+          <div class="card-tag">副廠適用</div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">綠光顯塵吸頭 Digital Slim／V12 款</div>
+          <div class="card-models">V12 / Digital Slim</div>
+          <div class="card-price"><small>$</small>799</div>
+          <button class="card-btn" onclick="lineAsk('綠光顯塵吸頭 Digital Slim／V12 款 $799')">LINE 詢問購買</button>
+        </div>
+      </div>
+
+      <div class="card reveal reveal-delay-1">
+        <div class="card-img-wrap">
+          <img class="card-img" src="dyson配件/LINE_ALBUM_拖把刷頭V7-V11_261119.jpg" alt="拖把刷頭（外掛水箱）V7–V11 款" loading="lazy">
+          <div class="card-tag">副廠適用</div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">拖把刷頭（外掛水箱）V7–V11 款</div>
+          <div class="card-models">V7 / V8 / V10 / V11</div>
+          <div class="card-price"><small>$</small>1,149</div>
+          <button class="card-btn" onclick="lineAsk('拖把刷頭（外掛水箱）V7–V11 款 $1149')">LINE 詢問購買</button>
+        </div>
+      </div>
+
+      <div class="card reveal reveal-delay-2">
+        <div class="card-img-wrap">
+          <img class="card-img" src="dyson配件/LINE_ALBUM_拖把刷頭V15_261119.jpg" alt="拖把刷頭（外掛水箱）V15 款" loading="lazy">
+          <div class="card-tag">副廠適用</div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">拖把刷頭（外掛水箱）V15 款</div>
+          <div class="card-models">V15</div>
+          <div class="card-price"><small>$</small>1,149</div>
+          <button class="card-btn" onclick="lineAsk('拖把刷頭（外掛水箱）V15 款 $1149')">LINE 詢問購買</button>
+        </div>
+      </div>
+
+      <div class="card reveal reveal-delay-3">
+        <div class="card-img-wrap">
+          <img class="card-img" src="dyson配件/LINE_ALBUM_洗地機頭_261119.jpg" alt="洗地機頭 V7–V11 款" loading="lazy">
+          <div class="card-tag">副廠適用</div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">洗地機頭 V7–V11 款</div>
+          <div class="card-models">V7 / V8 / V10 / V11</div>
+          <div class="card-price"><small>$</small>1,499</div>
+          <button class="card-btn" onclick="lineAsk('洗地機頭 V7–V11 款 $1499')">LINE 詢問購買</button>
+        </div>
+      </div>
+
+      <div class="card reveal reveal-delay-1">
+        <div class="card-img-wrap">
+          <img class="card-img" src="dyson配件/LINE_ALBUM_洗地機頭_261119.jpg" alt="洗地機頭 Digital Slim／V12 款" loading="lazy">
+          <div class="card-tag">副廠適用</div>
+          <div class="card-img-note">圖為同系列示意，實際適用機型以下方文字為準</div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">洗地機頭 Digital Slim／V12 款</div>
+          <div class="card-models">V12 / Digital Slim</div>
+          <div class="card-price"><small>$</small>1,149</div>
+          <button class="card-btn" onclick="lineAsk('洗地機頭 Digital Slim／V12 款 $1149')">LINE 詢問購買</button>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -725,7 +862,7 @@ src="https://www.facebook.com/tr?id=1838821526583145&ev=PageView&noscript=1"
 
       <div class="card reveal reveal-delay-3">
         <div class="card-img-wrap">
-          <div class="card-img-ph" role="img" aria-label="後置濾網 Digital Slim">Digital Slim<small>SV18 ／ SV52</small></div>
+          <img class="card-img" src="dyson濾芯/LINE_ALBUM_後置濾網DigitalSlim_261119.jpg" alt="後置濾網 Digital Slim" loading="lazy">
           <div class="card-tag">副廠適用</div>
         </div>
         <div class="card-body">
@@ -733,6 +870,32 @@ src="https://www.facebook.com/tr?id=1838821526583145&ev=PageView&noscript=1"
           <div class="card-models">Digital Slim</div>
           <div class="card-price"><small>$</small>189</div>
           <button class="card-btn" onclick="lineAsk('後置濾網 Digital Slim $189')">LINE 詢問購買</button>
+        </div>
+      </div>
+
+      <div class="card reveal reveal-delay-2">
+        <div class="card-img-wrap">
+          <img class="card-img" src="dyson濾芯/LINE_ALBUM_濾網G5_261119.jpg" alt="濾網 G5" loading="lazy">
+          <div class="card-tag">副廠適用</div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">濾網 G5</div>
+          <div class="card-models">G5（Gen5）</div>
+          <div class="card-price"><small>$</small>289</div>
+          <button class="card-btn" onclick="lineAsk('濾網 G5 $289')">LINE 詢問購買</button>
+        </div>
+      </div>
+
+      <div class="card reveal reveal-delay-3">
+        <div class="card-img-wrap">
+          <img class="card-img" src="dyson濾芯/LINE_ALBUM_濾網V16_261119.jpg" alt="濾網 V16 三入組" loading="lazy">
+          <div class="card-tag">副廠適用</div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">濾網 V16 三入組</div>
+          <div class="card-models">V16</div>
+          <div class="card-price"><small>$</small>739</div>
+          <button class="card-btn" onclick="lineAsk('濾網 V16 三入組 $739')">LINE 詢問購買</button>
         </div>
       </div>
 
