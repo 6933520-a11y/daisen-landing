@@ -225,12 +225,6 @@ nav.topnav {
   filter: brightness(0.9) saturate(0.9);
 }
 .card:hover .card-img { transform: scale(1.04); filter: brightness(1) saturate(1); }
-/* 借用同系列圖時，圖下方加註：以文字標示的機型為準 */
-.card-img-note {
-  position: absolute; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.6); color: rgba(255,255,255,0.85);
-  font-size: 10px; line-height: 1.4; padding: 5px 10px; text-align: center;
-}
 .card-tag {
   position: absolute; top: 10px; left: 10px;
   background: rgba(0,180,216,0.85); backdrop-filter: blur(4px);
@@ -249,6 +243,15 @@ nav.topnav {
   border-radius: 20px; margin-bottom: 14px;
   border: 1px solid rgba(0,180,216,0.15);
 }
+.card-qty { display: flex; gap: 6px; margin-top: auto; flex-wrap: wrap; }
+.card-qty + .card-price { margin-top: 10px; }
+.card-qty button {
+  flex: 1; min-width: 0; padding: 6px 0; border-radius: 6px; cursor: pointer;
+  font-size: 12px; font-family: 'Noto Sans TC', sans-serif;
+  background: transparent; color: rgba(255,255,255,0.7);
+  border: 1px solid rgba(255,255,255,0.18); transition: all 0.2s;
+}
+.card-qty button.on { background: rgba(0,180,216,0.18); color: #fff; border-color: var(--cyan); font-weight: 700; }
 .card-price {
   font-family: 'Montserrat', sans-serif;
   font-size: 24px; font-weight: 900; color: var(--cyan);
@@ -380,7 +383,7 @@ src="https://www.facebook.com/tr?id=1838821526583145&ev=PageView&noscript=1"
 
   <p class="hero-sub">
     V7 / V8 / V10 / V11 / V12 / V15 全系列相容<br>
-    吸頭配件 14 款・濾芯耗材 8 款・7 天不滿意包退・保固 1 個月<br>
+    吸頭配件 <span class="hero-count">23</span> 款・濾芯耗材 <span class="hero-count">10</span> 款・7 天不滿意包退・保固 1 個月<br>
     LINE 直購滿 $299：<strong>7-11 取貨免運</strong>，再現折 $30
   </p>
 
@@ -416,7 +419,7 @@ src="https://www.facebook.com/tr?id=1838821526583145&ev=PageView&noscript=1"
   <!-- sticky tab bar -->
   <div class="tab-sticky" id="tabSticky">
     <button class="tab-btn active" onclick="switchTab('accessories',this)">
-      吸頭配件 <span class="tab-count">24</span>
+      吸頭配件 <span class="tab-count">23</span>
     </button>
     <button class="tab-btn" onclick="switchTab('filters',this)">
       濾芯耗材 <span class="tab-count">10</span>
@@ -731,20 +734,6 @@ src="https://www.facebook.com/tr?id=1838821526583145&ev=PageView&noscript=1"
         </div>
       </div>
 
-      <div class="card reveal reveal-delay-1">
-        <div class="card-img-wrap">
-          <img class="card-img" src="dyson配件/LINE_ALBUM_洗地機頭_261119.jpg" alt="洗地機頭 Digital Slim／V12 款" loading="lazy">
-          <div class="card-tag">副廠適用</div>
-          <div class="card-img-note">圖為同系列示意，實際適用機型以下方文字為準</div>
-        </div>
-        <div class="card-body">
-          <div class="card-name">洗地機頭 Digital Slim／V12 款</div>
-          <div class="card-models">V12 / Digital Slim</div>
-          <div class="card-price"><small>$</small>1,149</div>
-          <button class="card-btn" onclick="lineAsk('洗地機頭 Digital Slim／V12 款 $1149')">LINE 詢問購買</button>
-        </div>
-      </div>
-
     </div>
   </div>
 
@@ -1040,16 +1029,47 @@ if (urlTab === 'filters') {
           console.warn('[價格同步] 後台沒有「' + m.label + '」，已隱藏該卡片。');
           return;
         }
-        var price = m.product.price;
         var priceEl = m.card.querySelector('.card-price');
         if (priceEl) {
           var shown = parseInt(priceEl.textContent.replace(/[^\d]/g, ''), 10);
-          if (shown !== price) changed.push(m.label + ' ' + shown + '→' + price);
-          priceEl.innerHTML = '<small>$</small>' + price.toLocaleString();
+          if (shown !== m.product.price) changed.push(m.label + ' ' + shown + '→' + m.product.price);
         }
-        // onclick 屬性裡的價格也是寫死的，改用 listener 蓋掉，避免動字串跳脫
+
+        // 雙入組／三入組：後台名稱是「單片名稱 + 雙入組／三入組」的，自動在卡片上長出數量選項。
+        // 後台停用某個組合，選項就跟著消失；不用為組合另外做卡片或改這個檔。
+        var options = [{ label: '單入', product: m.product }];
+        [['雙入組', '雙入'], ['三入組', '三入']].forEach(function (b) {
+          var bp = byName[norm(m.product.name) + b[0]];
+          if (bp) options.push({ label: b[1], product: bp });
+        });
+
         var btn = m.card.querySelector('.card-btn');
-        if (btn) btn.onclick = function () { lineAsk(m.label + ' $' + price); };
+        function choose(opt) {
+          if (priceEl) priceEl.innerHTML = '<small>$</small>' + opt.product.price.toLocaleString();
+          // 用後台的完整名稱，客人傳到 LINE 的訊息才看得出是哪一款
+          // （濾芯卡的 card-name 只有「後置濾網」，曾經讓 8 款濾網的詢問訊息都長一樣）
+          // onclick 屬性裡的價格是寫死的，改用 listener 蓋掉，避免動字串跳脫
+          if (btn) btn.onclick = function () { lineAsk(opt.product.name + ' $' + opt.product.price); };
+        }
+        choose(options[0]);
+
+        if (options.length > 1 && priceEl) {
+          var bar = document.createElement('div');
+          bar.className = 'card-qty';
+          options.forEach(function (opt, i) {
+            var b = document.createElement('button');
+            b.type = 'button';
+            b.textContent = opt.label;
+            if (i === 0) b.className = 'on';
+            b.onclick = function () {
+              [].forEach.call(bar.children, function (x) { x.className = ''; });
+              b.className = 'on';
+              choose(opt);
+            };
+            bar.appendChild(b);
+          });
+          priceEl.parentNode.insertBefore(bar, priceEl);
+        }
       });
 
       // 分類張數跟著實際顯示的卡片走
@@ -1059,6 +1079,8 @@ if (urlTab === 'filters') {
         }).length;
         var counter = document.querySelectorAll('.tab-count')[i];
         if (counter) counter.textContent = visible;
+        var hero = document.querySelectorAll('.hero-count')[i];
+        if (hero) hero.textContent = visible;
       });
 
       if (changed.length) console.info('[價格同步] 已更新：' + changed.join('、'));
